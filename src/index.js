@@ -1,25 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import {Provider} from 'react-redux';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { App } from './App';
+import RootReducer from './reducers/RootReducer';
 
-import { Nav } from './components/Nav/Nav';
-import { Home } from './components/Home/Home';
-import { RecipeDetails } from './components/RecipeDetails/RecipeDetails';
-import { Profile } from './components/Profile/Profile';
+const initialState = {
+    featured: {imgUrl: 'pic.jpg', title:'Featured', url:'link to'},
+    recipes: [
+        {imgUrl: 'pic.jpg', title:'Title-1', url:'/recipe-title'},
+        {imgUrl: 'pic.jpg', title:'Title-2', url:'/recipe-title'},
+        {imgUrl: 'pic.jpg', title:'Title', url:'/recipe-title'},
+        {imgUrl: 'pic.jpg', title:'Title', url:'/recipe-title'}
+    ],
+    recipe:
+        {
+            title: 'Title', imgUrl:'pic.jpg', author:'author name',
+            ingredients: ['ingredient-a', 'ingredient-b', 'ingredient-c'],
+            steps: ['step-a', 'step-b', 'step-c']
+        }
+};
 
-export const App = props => (
-    <Router>
-        <div>
-            <Nav />
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/recipe-title' component={RecipeDetails} />
-                <Route path='/profile' component={Profile} />
-            </Switch>
-        </div>
-    </Router>
+const store = createStore(RootReducer, initialState);
 
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('root')
 );
-
-ReactDOM.render(<App />, document.getElementById('root'));
