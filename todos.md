@@ -14,3 +14,13 @@
 
 - More Features
     ...
+
+## API
+
+| Method | Path                 | Return       |
+| ------ |--------------------- | ------------:|
+| GET    | /api/recipe          |   show all   |
+| GET    | /api/recipe/{slug}   |   details    |
+| GET    | /api/recipe/featured |   featured   |
+| PUT    | /api/recipe/{slug}   |   update     |
+| DELETE  | /api/recipe/{slug}  |   delete     |

@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-    $ git clone repo
-    $ cd repo
+    $ git clone https://github.com/salah-ahmed/myrecipebook
+    $ cd https://github.com/salah-ahmed/myrecipebook
     $ npm install
 ```
