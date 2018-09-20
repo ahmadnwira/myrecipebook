@@ -13,3 +13,10 @@ export const fetchFeatured = (data) => (
         data: data
     }
 );
+
+export const fetchRecipe = (data) => (
+    {
+        type: actionsTypes.fetchRecipe,
+        data: data
+    }
+);

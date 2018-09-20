@@ -15,13 +15,21 @@ const recipes = (state=[], action) => {
     switch (action.type)
     {
     case actionTypes.fetchAllRecipes:
-        return [...action.data, ...state];
+        return [...action.data];
     default:
         return state;
     }
 };
 
-const recipe = (state={}, action) => state;
+const recipe = (state={}, action) => {
+    switch (action.type)
+    {
+    case actionTypes.fetchRecipe:
+        return {...action.data};
+    default:
+        return state;
+    }
+};
 
 const RootReducer = combineReducers({
     featured,
