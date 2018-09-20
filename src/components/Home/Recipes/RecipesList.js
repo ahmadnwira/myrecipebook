@@ -1,15 +1,13 @@
 import React from 'react';
-import {Recipe} from './Recipe';
-
 import PropTypes from 'prop-types';
 
-export const RecipesList = (props, context) => {
+import {Recipe} from './Recipe';
 
-    const recipes = context.store.getState().recipes;
+export const RecipesList = props => {
     return (
         <div className="row text-center">
             {
-                recipes.map( (recipe, k) =>
+                props.recipes.map( (recipe, k) =>
                     <Recipe key={k}
                         title={recipe.title}
                         imgUrl={recipe.imgUrl}
@@ -21,6 +19,6 @@ export const RecipesList = (props, context) => {
     );
 };
 
-RecipesList.contextTypes = {
-    store: PropTypes.object
+RecipesList.propTypes = {
+    recipes: PropTypes.array
 };

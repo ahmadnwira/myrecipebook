@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Element } from './Element';
 
 export const List = props => {
-    console.log(props.data);
-
     return (
         props.isOrdered ?
             <ol className="list-group ordered">
