@@ -24,8 +24,8 @@ class Home extends React.Component{
     render() {
         return (
             <div className="container">
-                <Banner featured={this.context.store.getState().featured}/>
-                <RecipesList recipes={this.context.store.getState().recipes}/>
+                <Banner featured={this.props.featured}/>
+                <RecipesList recipes={this.props.recipes}/>
             </div>
         );
     }
@@ -33,6 +33,11 @@ class Home extends React.Component{
 
 Home.contextTypes = {
     store: PropTypes.object
+};
+
+Home.propTypes = {
+    featured: PropTypes.object,
+    recipes: PropTypes.array
 };
 
 const mapState = state => ({recipes: state.recipes, featured: state.featured});

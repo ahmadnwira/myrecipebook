@@ -19,7 +19,7 @@ class RecipeDetails extends React.Component {
     }
 
     render() {
-        const data = this.context.store.getState().recipe;
+        const data = this.props.recipe;
         return (
             <div className='container'>
                 {/* <div className="row d-block">
@@ -53,6 +53,10 @@ class RecipeDetails extends React.Component {
 
 RecipeDetails.contextTypes = {
     store: PropTypes.object
+};
+
+RecipeDetails.propTypes = {
+    recipe: PropTypes.object
 };
 
 const mapStateToProps = state => ({
