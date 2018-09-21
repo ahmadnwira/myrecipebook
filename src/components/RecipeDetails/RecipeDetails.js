@@ -22,11 +22,11 @@ class RecipeDetails extends React.Component {
         const data = this.props.recipe;
         return (
             <div className='container'>
-                {/* <div className="row d-block">
+                <div className="row d-block">
                     <h1>{data.title}</h1>
                     <p className="text-muted">by: {data.author}</p>
                     <button className="btn btn-primary">save to your recipes</button>
-                </div> */}
+                </div>
 
                 <div className="row mt-4">
                     <div className="col-xs-6 col-md-4">
