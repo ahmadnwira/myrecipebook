@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Banner } from './Banner';
-import { RecipesList } from './Recipes/RecipesList';
+import { RecipesList } from '../Recipes/RecipesList';
 import { fetchRecipes, fetchFeatured } from '../../actions/index';
 
 class Home extends React.Component{

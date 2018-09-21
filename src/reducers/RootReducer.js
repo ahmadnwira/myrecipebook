@@ -31,10 +31,21 @@ const recipe = (state={}, action) => {
     }
 };
 
+const userRecipes = (state=[], action) => {
+    switch (action.type)
+    {
+    case actionTypes.fetchUserRecipes:
+        return [...action.data];
+    default:
+        return state;
+    }
+};
+
 const RootReducer = combineReducers({
     featured,
     recipes,
-    recipe
+    recipe,
+    userRecipes
 });
 
 export default RootReducer;

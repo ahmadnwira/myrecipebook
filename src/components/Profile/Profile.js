@@ -1,30 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export const Profile = props => (
-    <div className="container">
-        <h1 className="border-bottom">Your Recipes</h1>
+import { fetchUserRecipes } from '../../actions/index';
+import { RecipesList } from '../Recipes/RecipesList';
 
-        <div className="row mt-4 text-center">
-            <div className="col-sm-6 col-md-3">
-                <a href="#" className="d-block mb-2 h-100 text-center">
-                    <img className="img-fluid" src="./pic.jpg" alt="" />
-                    <h4 className="m-0 text-white bg-dark">Title</h4>
-                </a>
+class Profile extends React.Component {
+    constructor() {
+        super();
+    }
+
+    componentDidMount() {
+        fetch('/api/user/recipes')
+            .then(res => res.json())
+            .then(data => {
+                this.context.store.dispatch(fetchUserRecipes(data));
+            });
+    }
+
+    render() {
+        return(
+            <div className="container">
+                <h1 className="border-bottom">Your Recipes</h1>
+                <RecipesList recipes={this.props.recipes} />
             </div>
+        );
+    }
+}
 
-            <div className="col-sm-6 col-md-3">
-                <a href="#" className="d-block mb-2 h-100 text-center">
-                    <img className="img-fluid" src="./moc/pic.jpg" alt="" />
-                    <h4 className="m-0 text-white bg-dark">Title</h4>
-                </a>
-            </div>
+Profile.contextTypes = {
+    store: PropTypes.object
+};
 
-            <div className="col-sm-6 col-md-3">
-                <a href="#" className="d-block mb-2 h-100 text-center">
-                    <img className="img-fluid" src="./moc/pic.jpg" alt="" />
-                    <h4 className="m-0 text-white bg-dark">Title</h4>
-                </a>
-            </div>
-        </div>
-    </div>
-);
+Profile.propTypes = {
+    recipes: PropTypes.array
+};
+
+const mapStateToProps = state => ({
+    recipes: state.userRecipes
+});
+
+Profile = connect(mapStateToProps)(Profile);
+
+export default Profile;

@@ -20,3 +20,10 @@ export const fetchRecipe = (data) => (
         data: data
     }
 );
+
+export const fetchUserRecipes = (data) => (
+    {
+        type: actionsTypes.fetchUserRecipes,
+        data: data
+    }
+);
