@@ -14,8 +14,8 @@ export const App = props => (
             <Nav />
             <Switch>
                 <Route exact path='/' component={Home} />
-                <Route path='/recipe-title' component={RecipeDetails} />
                 <Route path='/profile' component={Profile} />
+                <Route path='/:id' component={RecipeDetails} />
             </Switch>
         </div>
     </Router>

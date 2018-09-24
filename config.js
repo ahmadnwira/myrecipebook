@@ -1,5 +1,7 @@
-const env = process.env;
+import {load} from 'dotenv';
+load();
 
 export default {
-    port: env.PORT || 3000
+    port: process.env.SERVER_PORT,
+    db: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 };

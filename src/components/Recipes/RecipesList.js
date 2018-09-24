@@ -11,7 +11,7 @@ export const RecipesList = props => {
                     <Recipe key={k}
                         title={recipe.title}
                         imgUrl={recipe.imgUrl}
-                        url={recipe.url}
+                        url={recipe._id}
                     />
                 )
             }

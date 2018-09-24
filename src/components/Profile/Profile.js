@@ -14,6 +14,7 @@ class Profile extends React.Component {
         fetch('/api/user/recipes')
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 this.context.store.dispatch(fetchUserRecipes(data));
             });
     }
