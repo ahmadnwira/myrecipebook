@@ -1,7 +1,9 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 
 import config from './config';
 import apiRouter from './api';
+import { connectDB } from './lib/connectdb';
 
 
 export const server = express();
@@ -12,16 +14,12 @@ server.get('/', (req, res)=> {
     res.render('index');
 });
 
+/* Middleware */
 server.use(express.static('public'));
+server.use(bodyParser.json());
 server.use('/api', apiRouter);
 
-//Set up mongoose connection
-import mongoose from 'mongoose';
-const mongoDB = config.db;
-mongoose.connect(mongoDB, {useNewUrlParser: true});
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+connectDB(config.db);
 
 server.listen(config.port, ()=>{
     console.log(`Express is Listening on port ${config.port}`);

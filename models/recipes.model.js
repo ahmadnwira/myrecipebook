@@ -6,11 +6,13 @@ const RecipeSchema = new mongoose.Schema({
         required: true
     },
     imgUrl: String,
-    // ingredients: [],
-    // steps: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'steps'
-    // }
+    isFeatured: {
+        type: Boolean,
+        default: false
+    },
+    ingredients: [],
+    steps: [{description: String, order: Number}]
+    // user reference
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);

@@ -8,7 +8,7 @@ export const List = props => {
         props.isOrdered ?
             <ol className="list-group ordered">
                 {props.data.map(
-                    (elm, k) => <Element isOrdered={props.isOrdered} text={elm} key={k} />
+                    (elm, k) => <Element isOrdered={props.isOrdered} text={elm.description} key={k} />
                 )}
             </ol>
 

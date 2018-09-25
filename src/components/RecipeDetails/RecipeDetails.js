@@ -11,7 +11,8 @@ class RecipeDetails extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/api/recipe/5ba840615e0a7627544b0040')
+        const { id } = this.props.match.params;
+        fetch(`/api/recipe/${id}`)
             .then(res => res.json())
             .then(data => {
                 this.context.store.dispatch(fetchRecipe(data));
