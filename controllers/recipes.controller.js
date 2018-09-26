@@ -1,4 +1,5 @@
 import Recipe from '../models/recipes.model';
+import validate from '../lib/validator/validate';
 
 export const index = (req, res) => {
     Recipe.find().select({
@@ -38,7 +39,14 @@ export const show = (req, res) => {
 };
 
 export const store = (req, res) => {
-    /* TODO : use validate */
+    const errors = validate(req.body, {
+        'title': 'required|email',
+    });
+
+    if(errors.length > 0) {
+        return res.status(400).send(errors);
+    }
+
     const recipe = new Recipe({
         title: req.body.title,
         imgUrl: req.body.imgUrl,
