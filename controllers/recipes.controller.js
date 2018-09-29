@@ -1,3 +1,4 @@
+import fs from 'fs';
 import Recipe from '../models/recipes.model';
 import validate from '../lib/validator/validate';
 
@@ -46,6 +47,7 @@ export const store = (req, res) => {
     });
 
     if(errors.length > 0) {
+        fs.unlink(req.file.path, err =>{});
         return res.status(400).send(errors);
     }
 
@@ -57,7 +59,10 @@ export const store = (req, res) => {
     });
     recipe.save()
         .then(data => res.status(201).end())
-        .catch(err => res.status(500).end());
+        .catch(err => {
+            fs.unlink(req.file.path, err =>{});
+            res.status(500).end();
+        });
 };
 
 export const destroy = (req, res) => {
@@ -66,6 +71,7 @@ export const destroy = (req, res) => {
             if(!recipe) {
                 return res.status(404).end();
             }
+            fs.unlink(`public/${recipe.imgUrl}`, err=>{});
             return res.status(201).end();
         })
         .catch(err => {
