@@ -43,7 +43,7 @@ class RecipeDetails extends React.Component {
 
                     <div className="col-sm-12 col-md-4 d-block">
                         <p href="#" className="h-100 mt-2">
-                            <img className="img-fluid" src="./mock/pic.jpg" alt="" />
+                            <img className="img-fluid" src={data.imgUrl} alt="" />
                         </p>
                     </div>
                 </div>

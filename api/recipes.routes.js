@@ -1,11 +1,12 @@
 import { Router } from 'express';
+import uploader from '../lib/middleware/uploader';
 import * as recipeController from '../controllers/recipes.controller';
 
 export const recipesRouter = Router();
 
 recipesRouter.get('/', recipeController.index);
 
-recipesRouter.post('/', recipeController.store);
+recipesRouter.post('/', uploader, recipeController.store);
 
 recipesRouter.get('/:id', recipeController.show);
 

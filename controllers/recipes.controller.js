@@ -40,7 +40,9 @@ export const show = (req, res) => {
 
 export const store = (req, res) => {
     const errors = validate(req.body, {
-        'title': 'required|email',
+        'title': 'required',
+        'steps': 'required|isArray',
+        'ingredients': 'required|isArray',
     });
 
     if(errors.length > 0) {
@@ -49,11 +51,10 @@ export const store = (req, res) => {
 
     const recipe = new Recipe({
         title: req.body.title,
-        imgUrl: req.body.imgUrl,
+        imgUrl: 'uploads/' + req.file.filename,
         ingredients: req.body.ingredients,
         steps: req.body.steps
     });
-
     recipe.save()
         .then(data => res.status(201).end())
         .catch(err => res.status(500).end());
